@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 13</title>
+  </head>
+<body>
+
+  <label>请输入北京今天空气质量：<input id="aqi-input" type="text"></label>
+  <button id="button">确认填写</button>
+
+  <div>您输入的值是：<span id="aqi-display">尚无录入</span></div>
+
+<script type="text/javascript">
+
+(function() {
+  /*
+  在注释下方写下代码
+  给按钮button绑定一个点击事件和【键盘事件，按下回车键和click事件效果相同】
+  在事件处理函数中
+  获取aqi-input输入的值并显示在aqi-display中
+  【aqi-input输入的值在[0-1000]之间，否则aqi-diaplay显示"请录入0-1000内正确的数值！"】
+  【页面加载后aqi-input自动获取光标】
+  */
+  var aqiInput=document.getElementById("aqi-input");
+  var aqiDisplay=document.getElementById("aqi-display");
+  var okBtn=document.getElementById("button");
+  function handler(){
+    var aqiInputValue=parseInt(aqiInput.value);
+    if(!isNaN(aqiInputValue)&&aqiInputValue>0&&aqiInputValue<=1000){
+      aqiDisplay.innerHTML=aqiInputValue;
+    }else{
+      aqiDisplay.innerHTML="请录入0-1000内正确的数值！";
+    }
+  }
+  okBtn.addEventListener("click",handler);
+  aqiInput.addEventListener("keypress",function(e){
+    if(e.keyCode===13){
+      handler();
+    }
+  });
+  aqiInput.focus();
+})();
+
+</script>
+</body>
+</html>
+
